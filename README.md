@@ -9,6 +9,16 @@
 **The git should contain a clear markdown Readme, which describes : (33%)**
 - Which result you achieved? In which computation time? On which engine?
 - What do I have to install to be able to reproduce the code?
+This Git contains : 
+* requirement.txt
+* train.py
+* 
+
+You need to call the script with the following command: 
+
+```sh
+$ python train.py --data_path Data --output_folder Results
+```
 - Which command do I have to run to reproduce the results?
 
 **The code has to be easily reproducible. (33%)**
