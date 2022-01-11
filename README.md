@@ -7,6 +7,13 @@
 The solution focuses on targeted feature engineering and the use of a regressor model. 
 The validation process is not presented.
 
+You will find: 
+* requirement.txt that describes required packages
+* utils.py gathers the useful functions for preprocessing steps (see preprocess.py)
+* models.py gathers the models to train
+* preprocess.py that manages preprocessing functions for training and tesing datasets
+* train.py is the main file to run
+
 1. Have Python 3 installed
 2. Run the following command to access the Kaggle API using the command line: 
  ```sh
@@ -17,13 +24,6 @@ $ pip install kaggle
 $ kaggle competitions download -c defi-ia-2022
 ```
 4. Run `pip install -r requirements.txt` 
-5. 
-
-This Git contains : 
-* requirement.txt
-* train.py
-* utils.py
-* models.py
 
 You need to call the script with the following command: 
 ```sh
