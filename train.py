@@ -61,9 +61,9 @@ def Regressor(xtrain, ytrain, xtest, ytest,
     ##Round predictions to nearest 10th
     ypred['Prediction'] = ypred['Prediction'].round(1)
     
-    MODEL = ...
+    #MODEL = ...
     
-    return ypred, MODEL
+    return ypred #MODEL
 
 if __name__=='__main__':
   parser = argparse.ArgumentParser()
@@ -83,7 +83,7 @@ if __name__=='__main__':
   bltrain_for_path = data_path + "/Train/Train/Baselines/Baseline_forecast_train.csv"
   bltest_for_path = data_path + "/Test/Test/Baselines/Baseline_forecast_test.csv"
   
-  coords_path = "/Other/Other/stations_coordinates.csv"
+  coords_path = data_path + "/Other/Other/stations_coordinates.csv"
   
   ##Import data
   coords = pd.read_csv(coords_path)
@@ -118,7 +118,7 @@ if __name__=='__main__':
   n_neurons_r = 32
   
   ##Training parameters
-  verbose = 0
+  verbose = 1
   epochs_r = 20
   batch_size_r = 200
   
