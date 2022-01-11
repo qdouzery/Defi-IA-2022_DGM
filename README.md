@@ -1,24 +1,40 @@
 # Defi-IA 2022
+> Ranked 26th out of 84 on the [Kaggle Competition](https://www.kaggle.com/c/defi-ia-2022/overview).<br />
 > Predict the accumulated daily rainfall on ground stations.  
-
 *Quentin Douzery, Alexia Ghozland, Dario Moed*  
 
-[Kaggle](https://www.kaggle.com/c/defi-ia-2022/data)
+
+The solution focuses on targeted feature engineering and the use of a regressor model. 
+The validation process is not presented.
+
+1. Have Python 3 installed
+2. Run the following command to access the Kaggle API using the command line: 
+ ```sh
+$ pip install kaggle
+```
+3. Download the Kaggle weather data from [here](https://www.kaggle.com/c/defi-ia-2022/data), or by executing this command on your terminal 
+ ```sh
+$ kaggle competitions download -c defi-ia-2022
+```
+4. Run `pip install -r requirements.txt` 
+5. 
+
+This Git contains : 
+* requirement.txt
+* train.py
+* utils.py
+* models.py
+
+You need to call the script with the following command: 
+```sh
+$ python train.py --data_path Data --output_folder Results
+```
+
 
 ## Évaluation
 **The git should contain a clear markdown Readme, which describes : (33%)**
 - Which result you achieved? In which computation time? On which engine?
 - What do I have to install to be able to reproduce the code?
-This Git contains : 
-* requirement.txt
-* train.py
-* 
-
-You need to call the script with the following command: 
-
-```sh
-$ python train.py --data_path Data --output_folder Results
-```
 - Which command do I have to run to reproduce the results?
 
 **The code has to be easily reproducible. (33%)**
