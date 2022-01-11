@@ -66,6 +66,9 @@ def Regressor(xtrain, ytrain, xtest, ytest,
     return ypred #MODEL
 
 if __name__=='__main__':
+  ##A rajouter ???
+  #pd.options.mode.chained_assignment = None  # default='warn'
+
   parser = argparse.ArgumentParser()
   parser.add_argument('--data_path', type=str, default = 'TODO', help='path to folder containing files')
   parser.add_argument('--output_folder', type=str, default = 'TODO', help='path to folder to output model & predictions')
@@ -100,6 +103,8 @@ if __name__=='__main__':
   bltrain_for = pd.read_csv(bltrain_for_path, infer_datetime_format=True)
   bltest_for = pd.read_csv(bltest_for_path, infer_datetime_format=True)
 
+  print("Data : loaded")
+
   ##Preprocessing parameters
   nan = "fill" #How to handle NaNs
   mean = "all" #How to compute mean variables
@@ -109,9 +114,13 @@ if __name__=='__main__':
   ##Get preprocess data
   xtrain_p, ytrain_p = preprocess.Preprocess_train(xtrain_obs, ytrain, coords, bltrain_for,
                                                    nan, mean, smooth_means, means_on)
+
+  print("Preprocessing xtrain/ytrain : done")
   
   xtest_p = preprocess.Preprocess_test(xtest_obs, coords, bltest_obs, bltest_for,
                                        smooth_means, means_on)
+
+  print("Preprocessing xtest : done")
   
   ##Model parameters
   n_layers_r = 20
