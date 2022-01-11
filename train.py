@@ -132,10 +132,14 @@ if __name__=='__main__':
                                     epochs_r, batch_size_r,
                                     to_drop, verbose,
                                     dict_outliers)
+  
+  ##Post processing
+  Regressor_predictions['Prediction'] = Regressor_predictions['Prediction'] + 1
+  
+  ##Export
+  output_file_predictions = "/Predictions_regressor-20x32.csv"
+  Regressor_predictions.to_csv(output_folder + output_file_predictions, index=False)
 
-  
-  
-  
   
   
   
