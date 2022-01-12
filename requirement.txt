@@ -2,3 +2,6 @@
 numpy
 tensorflow
 pandas
+argparse
+h5py
+os
