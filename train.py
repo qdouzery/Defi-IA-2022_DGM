@@ -11,6 +11,8 @@ import pandas as pd
 import utils
 import models
 import preprocess
+import pickle as pkl
+import h5py
 
 def Regressor(xtrain, ytrain, xtest, ytest,
               n_layers_r, n_neurons_r,
@@ -60,18 +62,15 @@ def Regressor(xtrain, ytrain, xtest, ytest,
     
     ##Round predictions to nearest 10th
     ypred['Prediction'] = ypred['Prediction'].round(1)
-    
-    #MODEL = ...
-    
-    return ypred #MODEL
+        
+    return ypred, regressor
 
 if __name__=='__main__':
-  ##A rajouter ???
   #pd.options.mode.chained_assignment = None  # default='warn'
 
   parser = argparse.ArgumentParser()
-  parser.add_argument('--data_path', type=str, default = 'TODO', help='path to folder containing files')
-  parser.add_argument('--output_folder', type=str, default = 'TODO', help='path to folder to output model & predictions')
+  parser.add_argument('--data_path', type=str, default = '', help='path to folder containing files')
+  parser.add_argument('--output_folder', type=str, default = '', help='path to folder to output model & predictions')
 
   args = parser.parse_args()
   data_path = args.data_path
@@ -136,7 +135,7 @@ if __name__=='__main__':
   dict_outliers = {} #no outliers to remove
   
   ##Training and predictions
-  Regressor_predictions = Regressor(xtrain_p, ytrain_p, xtest_p, bltest_obs,
+  Regressor_predictions, model = Regressor(xtrain_p, ytrain_p, xtest_p, bltest_obs,
                                     n_layers_r, n_neurons_r,
                                     epochs_r, batch_size_r,
                                     to_drop, verbose,
@@ -148,11 +147,23 @@ if __name__=='__main__':
   ##Export
   output_file_predictions = "/Predictions_regressor-20x32.csv"
   Regressor_predictions.to_csv(output_folder + output_file_predictions, index=False)
+  
+  # %%
+  # Méthode 1
+  # Requiert h5py (si on utilise cette méthode, rajouter h5py dans le requirements.txt)
+  model.save(output_folder+'model.h5')
+  
+  # Méthode 2
+  # Requiert pickle (si on utilise cette méthode, rajouter pickle dans le requirements.txt)
+  # model_path = 'pickle_model'
+  # print(model_path)
+  # with open(model_path, 'w+b') as file:
+  #     print("Path opened")
+  #     print(model)
+  #     print(file)
+  #     pkl.dump(model, file)
+  #     print("File dumped")
 
-  
-  
-  
-  
   
   
   
