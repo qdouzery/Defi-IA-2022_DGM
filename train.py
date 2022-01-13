@@ -6,15 +6,19 @@ Created on Sun Jan  9 19:33:40 2022
 @author: qdouzery
 """
 
+##Import packages
 import argparse
 import pandas as pd
 import numpy as np
-import utils
-import models
-import preprocess
 import pickle as pkl
 import h5py
 import os
+from tensorflow import keras
+
+##Import files.py
+import utils
+import models
+import preprocess
 
 def Regressor(xtrain, ytrain, xtest, ytest,
               n_layers_r, n_neurons_r,
@@ -67,8 +71,9 @@ def Regressor(xtrain, ytrain, xtest, ytest,
         
     return ypred, regressor
 
+
 if __name__=='__main__':
-    os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+    os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2' #desactivate some warning messages
     
     parser = argparse.ArgumentParser()
     parser.add_argument('--data_path', type=str, default = '', help='path to folder containing files')
@@ -160,11 +165,11 @@ if __name__=='__main__':
     # model_path = 'pickle_model'
     # print(model_path)
     # with open(model_path, 'w+b') as file:
-    #     print("Path opened")
-    #     print(model)
-    #     print(file)
-    #     pkl.dump(model, file)
-    #     print("File dumped")
+    #      print("Path opened")
+    #      print(model)
+    #      print(file)
+    #      pkl.dump(model, file)
+    #      print("File dumped")
 
   
   
