@@ -8,14 +8,14 @@ The solution focuses on targeted feature engineering and the use of a regressor 
 The validation process is not presented.
 
 You will find: 
-* **requirement.txt** that describes required packages to run the code
+* **requirements.txt** that describes required packages to run the code
 * **train.py** that trains the model and outputs the final trained model as a .h5 file and predictions on the test data as a .csv format.
 * **utils.py** gathers the useful functions for preprocessing steps (see preprocess.py)
+* **preprocess.py** that manages preprocessing functions for train and test datasets
 * **models.py** contains the models to train
-* **preprocess.py** that manages preprocessing functions for training and testing datasets
 
-
-1. Have Python 3 installed,
+How to reproduce the results :
+1. Have Python 3 installed
 2. Run the following command to access the Kaggle API using the command line: 
  ```sh
 $ pip install kaggle
@@ -26,7 +26,7 @@ $ kaggle competitions download -c defi-ia-2022
 ```
 4. Run `pip install -r requirements.txt` using a virtual environment,
 
-You need to call the script with the following command: 
+5. You need to call the script with the following command: 
 ```sh
 $ python train.py --data_path Data --output_folder Results
 ```
@@ -34,16 +34,3 @@ Data is the path to the folder containing the data files downloaded on Kaggle (s
 Results is the path to the folder where to output the model and predictions. <br/>
 
 Execution time: 7mn on following engine: MacBook Air 2017, 1.8GHz intel Core i5 <br/>
-## Évaluation
-**The git should contain a clear markdown Readme, which describes : (33%)**
-- Which result you achieved? In which computation time? On which engine?
-- What do I have to install to be able to reproduce the code?
-- Which command do I have to run to reproduce the results?
-
-**The code has to be easily reproducible. (33%)**
-- Packages required has to be well described. (a requirements.txt files is the best)
-- Conda command or docker command can be furnish
-
-**The code should be clear and easily readable. (33%)**
-- Final results can be run in a script and not a notebook.
-- Only final code can be found in this script. 
