@@ -1,6 +1,6 @@
 # Défi-IA 2022
 > Ranked 26th out of 84 on the [Kaggle Competition](https://www.kaggle.com/c/defi-ia-2022/overview).<br />
-> Predict the accumulated daily rainfall on ground stations. 
+> Predict the accumulated daily rainfall on ground stations. <br />
 *Quentin Douzery, Alexia Ghozland, Dario Moed*  
 
 
@@ -15,7 +15,7 @@ You will find:
 * **preprocess.py** that manages preprocessing functions for training and testing datasets
 
 
-1. Have Python 3 installed
+1. Have Python 3 installed,
 2. Run the following command to access the Kaggle API using the command line: 
  ```sh
 $ pip install kaggle
@@ -24,7 +24,7 @@ $ pip install kaggle
  ```sh
 $ kaggle competitions download -c defi-ia-2022
 ```
-4. Run `pip install -r requirements.txt` 
+4. Run `pip install -r requirements.txt` using a virtual environment,
 
 You need to call the script with the following command: 
 ```sh
