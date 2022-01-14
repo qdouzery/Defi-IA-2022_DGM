@@ -30,7 +30,8 @@ You need to call the script with the following command:
 ```sh
 $ python train.py --data_path Data --output_folder Results
 ```
-
+Data is the path to the folder containing the data files downloaded on Kaggle (see 3.) <br />
+Results is the path to the folder where to output the model and predictions. 
 
 ## Évaluation
 **The git should contain a clear markdown Readme, which describes : (33%)**
