@@ -8,18 +8,19 @@ The solution focuses on targeted feature engineering and the use of a regressor 
 The validation process is not presented.
 
 You will find: 
-* requirement.txt that describes required packages
-* utils.py gathers the useful functions for preprocessing steps (see preprocess.py)
-* models.py gathers the models to train
-* preprocess.py that manages preprocessing functions for training and tesing datasets
-* train.py is the main file to run
+* **requirement.txt** that describes required packages to run the code
+* **train.py** that trains the model and outputs the final trained model as a .h5 file and predictions on the test data as a .csv format.
+* **utils.py** gathers the useful functions for preprocessing steps (see preprocess.py)
+* **models.py** contains the models to train
+* **preprocess.py** that manages preprocessing functions for training and testing datasets
+
 
 1. Have Python 3 installed
 2. Run the following command to access the Kaggle API using the command line: 
  ```sh
 $ pip install kaggle
 ```
-3. Download the Kaggle weather data from [here](https://www.kaggle.com/c/defi-ia-2022/data), or by executing this command on your terminal 
+3. Download the Kaggle weather data from [here](https://www.kaggle.com/c/defi-ia-2022/data), or by executing this command on your terminal: 
  ```sh
 $ kaggle competitions download -c defi-ia-2022
 ```
