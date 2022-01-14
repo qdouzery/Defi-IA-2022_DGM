@@ -1,0 +1,6 @@
+###### Requirements without Version Specifiers ######
+pandas
+numpy
+tensorflow
+argparse
+h5py
