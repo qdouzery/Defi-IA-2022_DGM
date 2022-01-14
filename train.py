@@ -7,13 +7,13 @@ Created on Sun Jan  9 19:33:40 2022
 """
 
 ##Import packages
-import argparse
 import pandas as pd
 import numpy as np
-import pickle as pkl
+from tensorflow import keras
+import argparse
 import h5py
 import os
-from tensorflow import keras
+import time
 
 ##Import files.py
 import utils
@@ -73,6 +73,7 @@ def Regressor(xtrain, ytrain, xtest, ytest,
 
 
 if __name__=='__main__':
+    ts = time.time()
     os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2' #desactivate some warning messages
     
     parser = argparse.ArgumentParser()
@@ -95,6 +96,8 @@ if __name__=='__main__':
     coords_path = data_path + "/Other/Other/stations_coordinates.csv"
 
     ##Import data
+    print("----- Begin loading data -----")
+
     coords = pd.read_csv(coords_path)
 
     xtrain_obs = pd.read_csv(xtrain_path,parse_dates=['date'],infer_datetime_format=True)
@@ -109,7 +112,7 @@ if __name__=='__main__':
     bltrain_for = pd.read_csv(bltrain_for_path, infer_datetime_format=True)
     bltest_for = pd.read_csv(bltest_for_path, infer_datetime_format=True)
 
-    print("##### Data : loaded #####")
+    print("##### Loading data : done #####")
 
     ##Preprocessing parameters
     nan = "fill" #How to handle NaNs
@@ -118,10 +121,13 @@ if __name__=='__main__':
     means_on = ['precip'] #on which variable to do the smooth mean
 
     ##Get preprocess data
+    print("----- Begin preprocessing xtrain/ytrain -----")
+
     xtrain_p, ytrain_p = preprocess.Preprocess_train(xtrain_obs, ytrain, coords, bltrain_for,
                                                    nan, mean, smooth_means, means_on)
 
     print("##### Preprocessing xtrain/ytrain : done #####")
+    print("----- Begin preprocessing xtest -----")
 
     xtest_p = preprocess.Preprocess_test(xtest_obs, coords, bltest_obs, bltest_for,
                                        smooth_means, means_on)
@@ -141,35 +147,33 @@ if __name__=='__main__':
     to_drop = ['month', 'season'] #variables to drop
     dict_outliers = {} #no outliers to remove
 
+    print("----- Begin training model -----")
+
     ##Training and predictions
     Regressor_predictions, model = Regressor(xtrain_p, ytrain_p, xtest_p, bltest_obs,
-                                           n_layers_r, n_neurons_r,
-                                           epochs_r, batch_size_r,
-                                           to_drop, verbose,
-                                           dict_outliers)
+                                             n_layers_r, n_neurons_r,
+                                             epochs_r, batch_size_r,
+                                             to_drop, verbose,
+                                             dict_outliers)
+
+    print("##### Training model : done #####")
 
     ##Post processing
     Regressor_predictions['Prediction'] = Regressor_predictions['Prediction'] + 1
+
+    print("----- Begin exporting files -----")
 
     ##Export
     output_file_predictions = "/Predictions_regressor-20x32.csv"
     Regressor_predictions.to_csv(output_folder + output_file_predictions, index=False)
 
-    # %%
-    # Méthode 1
-    # Requiert h5py (si on utilise cette méthode, rajouter h5py dans le requirements.txt)
-    model.save(output_folder+'/model.h5')
+    model.save(output_folder + '/Regressor-20x32.h5')
 
-    # Méthode 2
-    # Requiert pickle (si on utilise cette méthode, rajouter pickle dans le requirements.txt)
-    # model_path = 'pickle_model'
-    # print(model_path)
-    # with open(model_path, 'w+b') as file:
-    #      print("Path opened")
-    #      print(model)
-    #      print(file)
-    #      pkl.dump(model, file)
-    #      print("File dumped")
+    print("##### Exporting files : done #####")
+    
+    te = time.time()
+    print("Running time :", te-ts)
+
 
   
   
